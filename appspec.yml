@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+
+hooks:
+  ApplicationStop:
+    - timeout: 30
+      action: "DeregisterLambdaFunction"
+      function-name: "hello"
+
+  AfterInstall:
+    - timeout: 300
+      action: "Install"
+      name: "hello"
+
+  ApplicationStart:
+    - timeout: 30
+      action: "Invoke"
+      name: "hello"
